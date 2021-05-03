@@ -422,7 +422,7 @@ function addProject(){
     description:document.getElementById("description").value, 
     duration:document.getElementById("duration").value
   };
-  const url="http://127.0.0.1:8000/api/project"
+  const url="https://project37.herokuapp.com/api/project"
   fetch(url,{
     method: 'POST',
     body: JSON.stringify(reqBody), // string or object
@@ -430,14 +430,14 @@ function addProject(){
       'Content-Type': 'application/json'
     }
   })
-  window.location.replace("http://127.0.0.1:8000/api/homepage");
+  window.location.replace("https://project37.herokuapp.com/api/homepage");
 }
 
 
 function getProjects(){
   console.log("get project")
   var data
-  const url="http://127.0.0.1:8000/api/project"
+  const url="https://project37.herokuapp.com/api/project"
   var data1=fetch(url,{
     method: 'GET'
   }).then(response =>response.json()).then(data =>{
@@ -480,7 +480,7 @@ function projectTasks(id){
     document.getElementById("project-delete-button").style.display = "block";
     document.getElementById("view-project-button").style.display = "block";
     document.getElementById("startmsg").style.display = "none";
-    const url="http://127.0.0.1:8000/api/project/"+id
+    const url="https://project37.herokuapp.com/api/project/"+id
     project_id_clicked = id
     console.log(url)
     fetch(url,{
@@ -527,7 +527,7 @@ function projectTasks(id){
       end_date:document.getElementById("enddate").value,
       project_id:project_id_clicked,
     };
-    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/task"
+    const url="https://project37.herokuapp.com/api/project/"+project_id_clicked+"/task"
     fetch(url,{
       method: 'POST',
       body: JSON.stringify(reqBody), // string or object
@@ -540,7 +540,7 @@ function projectTasks(id){
     //   data.forEach((e)=>
 
     // });
-    window.location.replace("http://127.0.0.1:8000/api/homepage");
+    window.location.replace("https://project37.herokuapp.com/api/homepage");
   }
   function editTaskForm(id){
     console.log("id============",id)
@@ -551,7 +551,7 @@ function projectTasks(id){
     document.getElementById("update_task_button").style.display = "block";
     document.getElementById("add_task_button").style.display = "none";
     console.log("done",id)
-    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/task/"+id
+    const url="https://project37.herokuapp.com/api/project/"+project_id_clicked+"/task/"+id
     fetch(url,{
       method: 'GET',
     }).then(response =>response.json()).then(data =>{
@@ -578,7 +578,7 @@ function projectTasks(id){
       project_id:project_id_clicked,
     };
     console.log("req body=====",reqBody)
-    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/task/"+task_id_clicked+"/"
+    const url="https://project37.herokuapp.com/api/project/"+project_id_clicked+"/task/"+task_id_clicked+"/"
     fetch(url,{
       method: 'PUT',
       body: JSON.stringify(reqBody), // string or object
@@ -586,25 +586,25 @@ function projectTasks(id){
         'Content-Type': 'application/json'
       }
     })
-    window.location.replace("http://127.0.0.1:8000/api/homepage");
+    window.location.replace("https://project37.herokuapp.com/api/homepage");
 
   }
 
   function deleteTask(id){
     console.log("delete clicked")
-    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/task/"+id+"/"
+    const url="https://project37.herokuapp.com/api/project/"+project_id_clicked+"/task/"+id+"/"
     fetch(url,{
       method: 'DELETE',
     })
-    window.location.replace("http://127.0.0.1:8000/api/homepage");
+    window.location.replace("https://project37.herokuapp.com/api/homepage");
   }
   function deleteProject(){
     console.log("delete clicked")
-    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/"
+    const url="https://project37.herokuapp.com/api/project/"+project_id_clicked+"/"
     fetch(url,{
       method: 'DELETE',
     })
-    window.location.replace("http://127.0.0.1:8000/api/homepage");
+    window.location.replace("https://project37.herokuapp.com/api/homepage");
   }
 
   function editProjectForm(){
@@ -612,7 +612,7 @@ function projectTasks(id){
     document.getElementById("update-project-button").style.display = "block";
     document.getElementById("add-project-button").style.display = "none";
     // console.log("done",id)
-    const url="http://127.0.0.1:8000/api/project/p/"+project_id_clicked+"/"
+    const url="https://project37.herokuapp.com/api/project/p/"+project_id_clicked+"/"
     fetch(url,{
       method: 'GET',
     }).then(response =>response.json()).then(data =>{
@@ -636,7 +636,7 @@ function projectTasks(id){
       duration:document.getElementById("duration").value
     };
     console.log("req body=====",reqBody)
-    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/"
+    const url="https://project37.herokuapp.com/api/project/"+project_id_clicked+"/"
     fetch(url,{
       method: 'PUT',
       body: JSON.stringify(reqBody), // string or object
@@ -644,13 +644,13 @@ function projectTasks(id){
         'Content-Type': 'application/json'
       }
     })
-    window.location.replace("http://127.0.0.1:8000/api/homepage");
+    window.location.replace("https://project37.herokuapp.com/api/homepage");
 
   }
   
   function viewprojectdetails(){
     document.getElementById("project-details").style.display = "block";
-    const url="http://127.0.0.1:8000/api/project/p/"+project_id_clicked+"/"
+    const url="https://project37.herokuapp.com/api/project/p/"+project_id_clicked+"/"
     fetch(url,{
       method: 'GET',
     }).then(response =>response.json()).then(data =>{
