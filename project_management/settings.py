@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o5bcbj9_57ad@+_8ofv8j_qbf8moqrd3%t($cb-#z7wvs4aor_'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -76,14 +76,17 @@ WSGI_APPLICATION = 'project_management.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default':{
-        'ENGINE':'django.db.backends.postgresql',
-        'NAME':'client_house',
-        'USER':'postgres',
-        'PASSWORD':'sankey@123',
-        'HOST':'localhost',
-        'PORT':'5432'
-    }
+    # 'default':{
+    #     'ENGINE':'django.db.backends.postgresql',
+    #     'NAME':'client_house',
+    #     'USER':'postgres',
+    #     'PASSWORD':'sankey@123',
+    #     'HOST':'localhost',
+    #     'PORT':'5432'
+    # }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
@@ -124,3 +127,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
