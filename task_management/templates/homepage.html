@@ -1,0 +1,671 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.view-project-button{
+  display: none;
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+#buttontask{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+#update-button-top{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+#project-delete-button{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+#view-project-button{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: none;
+}
+/* The popup form - hidden by default */
+.article, .form-popup {
+  display: none;
+  position: fixed;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+.article, .task-form-popup {
+  display: none;
+  position: fixed;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+#noclass{
+  margin-top: 20px;
+  display: none;
+  position: fixed;
+  
+}
+#startmsg{
+  display: block;
+  position: fixed;
+}
+.table-c{
+  display: none;
+}
+#update_task_button{
+  display: none;
+}
+#add_task_button{
+  display: none;
+}
+#update-project-button{
+  display: none;
+}
+#add-project-button{
+  display: none;
+}
+/* Add styles to the form container */
+.form-container {
+  max-width: 600px;
+  padding: 10px;
+  background-color: white;
+}
+.task-form-container {
+  max-width: 600px;
+  padding: 10px;
+  background-color: white;
+}
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password],.form-container input[type=file] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+.task-form-container input[type=text], .task-form-container input[type=password],.task-form-container input[type=file],.task-form-container input[type=date] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus,.form-container input[type=file]:focus{
+  background-color: #ddd;
+  outline: none;
+}
+.task-form-container input[type=text]:focus, .task-form-container input[type=password]:focus,.task-form-container input[type=file]:focus,.task-form-container input[type=date]:focus{
+  background-color: #ddd;
+  outline: none;
+}
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+.task-form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+.task-form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.task-form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+/* Style the header */
+header {
+  background-color:#ff3333;
+  padding: 5px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 15%;
+  height: 800px;
+  background-color: #111;
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  /* height: 100%; */
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0px;
+  font-size: 20px;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 85%;
+  background-color: #f1f1f1;
+  height: 800px;
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+#project-tasks{
+  background-color:#ff3333;
+  width: 200px;
+  height: 300px;
+  display: block;
+  margin-top: 50px;
+  padding: 5px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  display:block;
+}
+
+td, th {
+  border: 2px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  cursor: pointer;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+  cursor: pointer;
+}
+
+#project-details{
+  width: 570px;
+  height: 200px;
+  background-color: white;
+  overflow-x: hidden;
+  margin-top: 40PX;
+  padding: 60px;
+  font-size: 16px;
+  display: none;
+
+}
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article,.form-popup{
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body onload="getProjects()">
+<header>
+  <!-- <h2>Project Management</h2> -->
+</header>
+
+<section>
+  
+  <nav>
+    <button class="button" onclick="openForm()">Add New Project</button>
+
+    <h3>Projects</h3>
+    <ul id="project-list">
+    </ul>
+  </nav>
+  
+  <article>
+    <div class="form-popup" id="myForm">
+      <form class="form-container">
+        <!-- {% csrf_token %} -->
+        <h1>Project</h1>
+    
+        <label for="name"><b>Project Name</b></label>
+        <input type="text" placeholder="Enter Project Name" name="name" id="name" required >
+    
+        <label for="desc"><b>Description</b></label>
+        <input type="text" placeholder="Enter Description" name="description" id="description" required>
+
+        <label for="duration"><b>Duration</b></label>
+        <input type="text" placeholder="In Months" name="duration" id="duration" required>
+
+        <label for="avtar"><b>Avtar</b></label>
+        <input type="file" id="img" name="project_image" id="project_image" accept="image/*">
+        <!-- <input type="desc" placeholder="Enter Description" name="desc" required> -->
+    
+        <button type="button" class="btn" id='add-project-button' onclick="addProject()">Submit</button>
+        <button type="button" class="btn" id="update-project-button" onclick="updateProject()">Update</button>
+        <button type="button" class="btn cancel" onclick="closeProjectForm()">Close</button>
+      </form>
+    </div>
+
+
+    <div class="task-form-popup" id="taskForm">
+      <form class="task-form-container">
+        <!-- {% csrf_token %} -->
+        <h1>Task</h1>
+    
+        <label for="tname"><b>Task  Name</b></label>
+        <input type="text" placeholder="Enter Project Name" name="tname" id="tname" required >
+    
+        <label for="tdesc"><b>Description</b></label>
+        <input type="text" placeholder="Enter Description" name="tdescription" id="tdescription" required>
+
+        <label for="startdate"><b>Start Date</b></label>
+        <input type="date" name="startdate" id="startdate" required>
+
+        <label for="enddate"><b>End Date</b></label>
+        <input type="date" name="enddate" id="enddate" required>
+        <!-- <input type="desc" placeholder="Enter Description" name="desc" required> -->
+    
+        <button type="button" class="btn" id="add_task_button" onclick="addTask()">Submit</button>
+        <button type="button" class="btn" id="update_task_button" onclick="updateTask()">Update</button>
+        <button type="button" class="btn cancel" onclick="closeTaskForm()">Close</button>
+      </form>
+    </div>
+    <h1 id="startmsg">Please click on the project to see tasks</h1>
+    
+    <button id="update-button-top" onclick="editProjectForm()">Edit Project</button>
+    <button id="project-delete-button" onclick="deleteProject()">Delete Project</button>
+    <button id="view-project-button" onclick="viewprojectdetails()">View Project Details</button>
+    
+    <button id="buttontask" onclick="openTaskForm()">Add New Task</button>
+    
+    <h1 id="noclass">No Tasks Found, Please add Task.</h1>
+    <h1 id="noproject">No Projects Found, Please add Project.</h1>
+
+    <div class="table-c">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Project Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="data">
+
+        </tbody>
+      </table>
+    </div>
+    <div id="project-details">
+      <span class="lable">Project Name: <lable id="proj-name"></lable> </span></br>
+      <span class="lable">Project Description: <lable id="proj-desc"></lable> </span></br>
+      <span class="lable">Project Duration: <lable id="proj-dur"></lable> </span>
+
+      
+    </div>
+    
+    
+  </article>
+</section>
+</body>
+
+
+<script>
+  var clickonproject =false
+  var project_id_clicked;
+  var task_id_clicked;
+  // open add project form
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    document.getElementById("update-project-button").style.display = "none";
+    document.getElementById("add-project-button").style.display = "block";
+  }
+  // close add project form
+  function closeProjectForm() {
+    console.log("closed clicked")
+    document.getElementById("myForm").style.display = "none";
+  }
+  // open add task form
+  function openTaskForm() {
+    document.getElementById("update_task_button").style.display = "none";
+    document.getElementById("add_task_button").style.display = "block";
+    document.getElementById("taskForm").style.display = "block";
+  }
+  function closeTaskForm() {
+document.getElementById("taskForm").style.display = "none";
+}
+function addProject(){
+  var reqBody = {
+    name:document.getElementById("name").value, 
+    description:document.getElementById("description").value, 
+    duration:document.getElementById("duration").value
+  };
+  const url="http://127.0.0.1:8000/api/project"
+  fetch(url,{
+    method: 'POST',
+    body: JSON.stringify(reqBody), // string or object
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  window.location.replace("http://127.0.0.1:8000/api/homepage");
+}
+
+
+function getProjects(){
+  console.log("get project")
+  var data
+  const url="http://127.0.0.1:8000/api/project"
+  var data1=fetch(url,{
+    method: 'GET'
+  }).then(response =>response.json()).then(data =>{
+    console.log(data)
+    var ul = document.getElementById("project-list")
+    if (data.length>0){
+      document.getElementById("noproject").style.display = "none";
+      document.getElementById("startmsg").style.display = "block";
+      data.forEach(function (e){
+      var li =
+      document.createElement('li');
+      li.id = e.id
+      // li.innerHTML = "<a href=''>"+e.name +"</a>";
+      li.innerHTML = e.name
+      li.addEventListener('click', () => {
+        console.log("event")
+        // document.getElementById("buttontask").style.display = "block";
+        clickonproject=true
+        console.log("on in event cli",clickonproject)
+        projectTasks(e.id)
+    });
+      ul.append(li)
+    })
+    }
+    else{
+      document.getElementById("noproject").style.display = "block";
+      document.getElementById("startmsg").style.display = "none";
+    }
+    
+
+    });
+}
+function projectTasks(id){
+    console.log("hit sucesss",id)
+    // var project_task_data =
+    document.getElementById("myForm").style.display = "none";
+    document.getElementById("taskForm").style.display = "none";
+    document.getElementById("buttontask").style.display = "block";
+    document.getElementById("update-button-top").style.display = "block";
+    document.getElementById("project-delete-button").style.display = "block";
+    document.getElementById("view-project-button").style.display = "block";
+    document.getElementById("startmsg").style.display = "none";
+    const url="http://127.0.0.1:8000/api/project/"+id
+    project_id_clicked = id
+    console.log(url)
+    fetch(url,{
+      method: 'GET'
+    }).then(response =>response.json()).then(data =>{
+      
+      if (data.length > 0){
+        document.getElementsByClassName("table-c")[0].style.display = "block";
+        console.log("data----------",data)
+        var temp=""
+        data.forEach((e)=>{
+          temp +="<tr id="+e.id+">";
+          // temp.id = e.id;
+          temp +="<td>"+e.project_id+"</td>";
+          temp +="<td>"+e.name+"</td>";
+          temp +="<td>"+e.description+"</td>";
+          temp +="<td>"+e.start_date+"</td>";
+          temp +="<td>"+e.end_date+"</td>";
+          temp +="<td onclick='editTaskForm("+e.id+")'>Edit</td>"
+          temp +="<td onclick='deleteTask("+e.id+")'>Delete</td></tr>";
+        })
+        document.getElementById("data").innerHTML=temp;
+        var noclass=document.getElementById("noclass");
+        noclass.style.display = "none";
+      }
+      else{
+        // ("in else")
+        document.getElementsByClassName("table-c")[0].style.display = "none";
+        var noclass=document.getElementById("noclass");
+        noclass.style.display = "block";
+      }
+        
+      
+    });
+  }
+
+  function addTask(){
+    console.log(project_id_clicked)
+    var taskdata;
+    var reqBody = {
+      name:document.getElementById("tname").value, 
+      description:document.getElementById("tdescription").value, 
+      start_date:document.getElementById("startdate").value,
+      end_date:document.getElementById("enddate").value,
+      project_id:project_id_clicked,
+    };
+    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/task"
+    fetch(url,{
+      method: 'POST',
+      body: JSON.stringify(reqBody), // string or object
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })//.then(response =>response.json()).then(data =>{
+      // var taskblock = document.getElementById("project-tasks")
+      // if 
+    //   data.forEach((e)=>
+
+    // });
+    window.location.replace("http://127.0.0.1:8000/api/homepage");
+  }
+  function editTaskForm(id){
+    console.log("id============",id)
+    task_id_clicked = id;
+    console.log("project_id============",project_id_clicked)
+    document.getElementById("taskForm").style.display = "block";
+    // document.getElementById("update_task_button").style.display = "block";
+    document.getElementById("update_task_button").style.display = "block";
+    document.getElementById("add_task_button").style.display = "none";
+    console.log("done",id)
+    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/task/"+id
+    fetch(url,{
+      method: 'GET',
+    }).then(response =>response.json()).then(data =>{
+      console.log("task data==============",data)
+      if (data.length>0){
+        document.getElementById("tname").value=data[0].name, 
+        document.getElementById("tdescription").value=data[0].description, 
+        document.getElementById("startdate").value=data[0].start_date, 
+        document.getElementById("enddate").value=data[0].end_date
+      }
+      else{
+        console.log("task data not found")
+      }
+    })
+  }
+  function updateTask(){
+    console.log("update clicked")
+    var taskdata;
+    var reqBody = {
+      name:document.getElementById("tname").value, 
+      description:document.getElementById("tdescription").value, 
+      start_date:document.getElementById("startdate").value,
+      end_date:document.getElementById("enddate").value,
+      project_id:project_id_clicked,
+    };
+    console.log("req body=====",reqBody)
+    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/task/"+task_id_clicked+"/"
+    fetch(url,{
+      method: 'PUT',
+      body: JSON.stringify(reqBody), // string or object
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    window.location.replace("http://127.0.0.1:8000/api/homepage");
+
+  }
+
+  function deleteTask(id){
+    console.log("delete clicked")
+    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/task/"+id+"/"
+    fetch(url,{
+      method: 'DELETE',
+    })
+    window.location.replace("http://127.0.0.1:8000/api/homepage");
+  }
+  function deleteProject(){
+    console.log("delete clicked")
+    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/"
+    fetch(url,{
+      method: 'DELETE',
+    })
+    window.location.replace("http://127.0.0.1:8000/api/homepage");
+  }
+
+  function editProjectForm(){
+    document.getElementById("myForm").style.display = "block";
+    document.getElementById("update-project-button").style.display = "block";
+    document.getElementById("add-project-button").style.display = "none";
+    // console.log("done",id)
+    const url="http://127.0.0.1:8000/api/project/p/"+project_id_clicked+"/"
+    fetch(url,{
+      method: 'GET',
+    }).then(response =>response.json()).then(data =>{
+      console.log("task data==============",data)
+      if (data.length>0){
+        document.getElementById("name").value=data[0].name, 
+        document.getElementById("description").value=data[0].description, 
+        document.getElementById("duration").value=data[0].duration
+      }
+      else{
+        console.log("task data not found")
+      }
+    })
+  }
+  function updateProject(){
+    console.log("update clicked")
+    var taskdata;
+    var reqBody = {
+      name:document.getElementById("name").value, 
+      description:document.getElementById("description").value, 
+      duration:document.getElementById("duration").value
+    };
+    console.log("req body=====",reqBody)
+    const url="http://127.0.0.1:8000/api/project/"+project_id_clicked+"/"
+    fetch(url,{
+      method: 'PUT',
+      body: JSON.stringify(reqBody), // string or object
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    window.location.replace("http://127.0.0.1:8000/api/homepage");
+
+  }
+  
+  function viewprojectdetails(){
+    document.getElementById("project-details").style.display = "block";
+    const url="http://127.0.0.1:8000/api/project/p/"+project_id_clicked+"/"
+    fetch(url,{
+      method: 'GET',
+    }).then(response =>response.json()).then(data =>{
+      console.log("task data==============",data)
+      if (data.length>0){
+        document.getElementById("proj-name").innerHTML=data[0].name, 
+        document.getElementById("proj-desc").innerHTML=data[0].description, 
+        document.getElementById("proj-dur").innerHTML=data[0].duration
+      }
+      else{
+        console.log("task data not found")
+      }
+    })
+  }
+
+</script>
+
+</html>
